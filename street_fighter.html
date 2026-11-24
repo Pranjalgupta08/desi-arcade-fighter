@@ -184,6 +184,12 @@
       z-index: 20;
       display: none;
     }
+    .touch-toggle {
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      z-index: 20;
+    }
     body.title-active .fullscreen-stage-toggle,
     .stage-shell:fullscreen .fullscreen-stage-toggle { display: block; }
     .title-screen::after {
@@ -794,14 +800,20 @@
     }
 
     .touch-pad {
+      position: absolute;
+      left: 10px;
+      right: 96px;
+      bottom: 10px;
+      z-index: 9;
       display: none;
       align-items: center;
       justify-content: space-between;
       gap: 10px;
       padding: 8px 10px;
       border-radius: 12px;
-      background: rgba(34, 9, 36, 0.95);
+      background: rgba(34, 9, 36, 0.82);
       border: 1.5px solid rgba(255, 206, 92, 0.55);
+      backdrop-filter: blur(4px);
     }
     .touch-pad.visible { display: flex; }
 
@@ -862,6 +874,133 @@
       .portrait-canvas { width: 56px; height: 56px; }
       .f-move, .f-sup { font-size: 0.5rem; }
     }
+    .mobile-hint { display: none; }
+    @media (max-width: 760px) {
+      html, body {
+        height: auto;
+        min-height: 100vh;
+        min-height: 100dvh;
+        justify-content: flex-start;
+      }
+      .cabinet {
+        width: 100vw;
+        padding: 4px;
+        border-radius: 0;
+        border-left: 0;
+        border-right: 0;
+      }
+      .stage-shell { border-radius: 8px; }
+      .fullscreen-stage-toggle {
+        display: block;
+        top: 6px;
+        right: 6px;
+        padding: 4px 8px;
+      }
+      .touch-toggle {
+        right: 6px;
+        bottom: 5px;
+        padding: 4px 7px;
+        font-size: 0.58rem;
+      }
+      .touch-pad {
+        left: 4px;
+        right: auto;
+        bottom: 5px;
+        width: min(320px, calc(100vw - 90px));
+        gap: 4px;
+        padding: 4px;
+        border-radius: 8px;
+      }
+      .dpad-grid {
+        grid-template-columns: repeat(3, clamp(30px, 9vw, 38px));
+        gap: 3px;
+      }
+      .act-grid {
+        grid-template-columns: repeat(3, clamp(32px, 10vw, 42px));
+        gap: 3px;
+      }
+      .t-btn {
+        height: 36px;
+        border-radius: 7px;
+        font-size: clamp(0.44rem, 1.6vw, 0.58rem);
+      }
+      .mobile-hint {
+        display: block;
+        padding: 4px 6px;
+        color: #ffe3a2;
+        font-size: 0.66rem;
+        line-height: 1.35;
+        text-align: center;
+      }
+    }
+    @media (max-width: 760px) and (orientation: landscape) {
+      .mobile-hint { display: none; }
+    }
+    @media (orientation: landscape) and (max-height: 500px) {
+      html, body {
+        width: 100%;
+        height: 100%;
+        min-height: 0;
+        overflow: hidden;
+        justify-content: flex-start;
+      }
+      .cabinet {
+        width: 100vw;
+        height: 100vh;
+        height: 100dvh;
+        min-height: 0;
+        padding: 0;
+        gap: 0;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+      }
+      .toran-wrap, .top-bar, .controls-wrap, .mobile-hint { display: none; }
+      .stage-shell {
+        flex: 1;
+        width: 100%;
+        height: 100%;
+        min-height: 0;
+        aspect-ratio: auto;
+        border: 0;
+        border-radius: 0;
+      }
+      #gameCanvas { object-fit: contain; }
+      .fullscreen-stage-toggle {
+        display: block;
+        top: 6px;
+        right: 6px;
+        padding: 4px 8px;
+      }
+      .touch-toggle {
+        right: 6px;
+        bottom: 5px;
+        padding: 4px 7px;
+        font-size: 0.58rem;
+      }
+      .touch-pad {
+        left: 4px;
+        right: auto;
+        bottom: 5px;
+        width: min(320px, calc(100vw - 90px));
+        gap: 4px;
+        padding: 4px;
+        border-radius: 8px;
+      }
+      .dpad-grid {
+        grid-template-columns: repeat(3, clamp(30px, 9vw, 38px));
+        gap: 3px;
+      }
+      .act-grid {
+        grid-template-columns: repeat(3, clamp(32px, 10vw, 42px));
+        gap: 3px;
+      }
+      .t-btn {
+        height: 36px;
+        border-radius: 7px;
+        font-size: clamp(0.44rem, 1.6vw, 0.58rem);
+      }
+    }
   </style>
 </head>
 <body>
@@ -908,7 +1047,6 @@
         <button class="pill-btn" id="btnStageCycle" type="button">STAGE: GOLDEN BAZAAR</button>
         <button class="pill-btn active" id="btnBeats" type="button">INDIAN BEATS: ON</button>
         <button class="pill-btn active" id="btnSfx" type="button">SFX: ON</button>
-        <button class="pill-btn" id="btnTouch" type="button">TOUCH PAD</button>
         <button class="pill-btn" id="btnFullscreen" type="button" aria-pressed="false">FULLSCREEN</button>
         <button class="pill-btn" id="btnPause" type="button">PAUSE</button>
       </div>
@@ -918,6 +1056,26 @@
     <div class="stage-shell">
       <canvas id="gameCanvas" width="960" height="540"></canvas>
       <button class="pill-btn fullscreen-stage-toggle" id="btnStageFullscreen" type="button" aria-pressed="false">FULLSCREEN</button>
+      <button class="pill-btn touch-toggle" id="btnTouch" type="button" aria-pressed="false">TOUCH PAD</button>
+
+      <div class="touch-pad" id="touchPad">
+        <div class="dpad-grid">
+          <div></div>
+          <button class="t-btn" data-act="jump" type="button">JUMP</button>
+          <div></div>
+          <button class="t-btn" data-act="left" type="button">LEFT</button>
+          <button class="t-btn" data-act="block" type="button">BLOCK</button>
+          <button class="t-btn" data-act="right" type="button">RIGHT</button>
+        </div>
+        <div class="act-grid">
+          <button class="t-btn" data-act="light" type="button">LIGHT</button>
+          <button class="t-btn" data-act="heavy" type="button">HEAVY</button>
+          <button class="t-btn t-taunt" data-act="taunt" type="button">TAUNT</button>
+          <button class="t-btn t-spec" data-act="special" type="button">SPECIAL</button>
+          <button class="t-btn t-sup" data-act="super" type="button">SUPER</button>
+          <button class="t-btn" data-act="roll" type="button">ROLL</button>
+        </div>
+      </div>
 
       <!-- Setup / Character & Stage Select Overlay -->
       <div class="overlay title-screen" id="titleOverlay">
@@ -1031,26 +1189,7 @@
         </div>
       </div>
     </div>
-
-    <!-- Optional On-Screen Touch Pad -->
-    <div class="touch-pad" id="touchPad">
-      <div class="dpad-grid">
-        <div></div>
-        <button class="t-btn" data-act="jump" type="button">JUMP</button>
-        <div></div>
-        <button class="t-btn" data-act="left" type="button">LEFT</button>
-        <button class="t-btn" data-act="block" type="button">BLOCK</button>
-        <button class="t-btn" data-act="right" type="button">RIGHT</button>
-      </div>
-      <div class="act-grid">
-        <button class="t-btn" data-act="light" type="button">LIGHT</button>
-        <button class="t-btn" data-act="heavy" type="button">HEAVY</button>
-        <button class="t-btn t-taunt" data-act="taunt" type="button">TAUNT</button>
-        <button class="t-btn t-spec" data-act="special" type="button">SPECIAL</button>
-        <button class="t-btn t-sup" data-act="super" type="button">SUPER</button>
-        <button class="t-btn" data-act="roll" type="button">ROLL</button>
-      </div>
-    </div>
+    <div class="mobile-hint">For the largest view, rotate your phone to landscape and tap FULLSCREEN.</div>
 
     <!-- Collapsible Controls Bar -->
     <div class="controls-wrap">
@@ -4374,6 +4513,7 @@
             const tp = document.getElementById('touchPad');
             const vis = tp.classList.toggle('visible');
             this.classList.toggle('active', vis);
+            this.setAttribute('aria-pressed', String(vis));
           });
 
           const fullscreenButtons = [
@@ -4407,7 +4547,14 @@
               fullscreenStatus.textContent = 'Fullscreen is not supported by this browser.';
               return;
             }
-            stageShell.requestFullscreen().catch(function (error) {
+            stageShell.requestFullscreen().then(function () {
+              if (window.matchMedia('(max-width: 760px) and (orientation: portrait)').matches &&
+                  screen.orientation && typeof screen.orientation.lock === 'function') {
+                return screen.orientation.lock('landscape').catch(function (error) {
+                  fullscreenStatus.textContent = 'Rotate your phone to landscape for the largest view: ' + error.message;
+                });
+              }
+            }).catch(function (error) {
               fullscreenStatus.textContent = 'Could not enter fullscreen: ' + error.message;
             });
           };
