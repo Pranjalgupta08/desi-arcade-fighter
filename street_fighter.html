@@ -255,9 +255,9 @@
       transform: skewY(-3deg);
     }
     .title-fighter.right .title-fighter-frame {
-      border-color: #8cf2ff;
-      background: linear-gradient(145deg, rgba(0, 184, 212, 0.75), rgba(47, 13, 74, 0.9));
-      box-shadow: 0 0 26px rgba(0, 214, 255, 0.35);
+      border-color: #ffd166;
+      background: linear-gradient(145deg, rgba(214, 40, 40, 0.82), rgba(68, 8, 24, 0.94));
+      box-shadow: 0 0 26px rgba(214, 40, 40, 0.42);
       transform: skewY(3deg);
     }
     .title-fighter-portrait {
@@ -286,7 +286,11 @@
       font-weight: 1000;
       letter-spacing: 0.12em;
     }
-    .title-fighter.right .title-fighter-tag { background: #5deaff; }
+    .title-fighter.right .title-fighter-tag {
+      border: 1px solid #ffd166;
+      background: #8f1526;
+      color: #fff3d4;
+    }
     .title-kicker {
       color: #8cf2ff;
       font-size: clamp(0.64rem, 1.6vw, 0.82rem);
@@ -330,11 +334,41 @@
     }
     .title-tagline { color: #fff3dc; font-size: clamp(0.82rem, 2vw, 1rem); }
     .title-features {
-      margin: 12px 0 22px;
+      margin: 12px 0 8px;
       color: #ffcf6e;
       font-size: 0.68rem;
       font-weight: 900;
       letter-spacing: 0.11em;
+    }
+    .title-prize {
+      display: grid;
+      gap: 2px;
+      width: min(100%, 380px);
+      margin: 0 auto 15px;
+      padding: 6px 10px;
+      border: 1px solid rgba(255, 209, 102, 0.88);
+      border-radius: 10px;
+      background: linear-gradient(90deg, rgba(103, 13, 37, 0.82), rgba(56, 16, 36, 0.94), rgba(103, 13, 37, 0.82));
+      box-shadow: 0 0 18px rgba(255, 190, 59, 0.18);
+    }
+    .title-prize-label {
+      color: #fff3d4;
+      font-size: 0.58rem;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+    }
+    .title-prize strong {
+      color: #ffd166;
+      font-size: clamp(1rem, 2.4vw, 1.3rem);
+      font-weight: 1000;
+      letter-spacing: 0.08em;
+      text-shadow: 0 0 12px rgba(255, 190, 59, 0.35);
+    }
+    .title-prize-note {
+      color: #ffdda0;
+      font-size: 0.54rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
     }
     .title-enter {
       min-width: 220px;
@@ -382,13 +416,14 @@
     @media (max-width: 760px) {
       .title-card { width: min(88%, 560px); padding: 14px; }
       .title-fighter { width: 16%; }
-      .title-features { margin: 8px 0 14px; font-size: 0.56rem; }
+      .title-features { margin: 8px 0 7px; font-size: 0.56rem; }
       .title-subtitle { margin-top: 10px; }
       .title-rule { margin: 12px auto 10px; }
     }
     @media (max-width: 520px) {
       .title-fighter { display: none; }
       .title-card { width: 94%; }
+      .title-prize { margin-bottom: 10px; }
       .title-logo span { font-size: clamp(2rem, 10vw, 3.2rem); }
       .title-logo strong { font-size: clamp(2.5rem, 13vw, 4.2rem); }
       .title-kicker { letter-spacing: 0.2em; }
@@ -1142,7 +1177,12 @@
           <div class="title-subtitle">INCREDIBLE INDIA EDITION</div>
           <div class="title-rule"></div>
           <div class="title-tagline">THE ULTIMATE AKHADA BATTLE</div>
-          <div class="title-features">1 PLAYER VS CPU&nbsp; • &nbsp;2 PLAYER LOCAL&nbsp; • &nbsp;8 FIGHTERS</div>
+          <div class="title-features">1 PLAYER VS CPU&nbsp; • &nbsp;2 PLAYER LOCAL&nbsp; • &nbsp;8-FIGHT LADDER + SHERU BHAI</div>
+          <div class="title-prize">
+            <span class="title-prize-label">SHERU BHAI'S LADDER PRIZE</span>
+            <strong>₹1 ARAB RUPEES</strong>
+            <span class="title-prize-note">DEFEAT ALL 7 RIVALS AND SHERU BHAI TO WIN</span>
+          </div>
           <button class="cta-btn title-enter" id="btnEnterArena" type="button">PRESS START</button>
           <div class="title-hint">PRESS ENTER OR SPACE</div>
           <div class="title-version">5 ARENAS&nbsp; • &nbsp;UNIQUE SPECIAL MOVES&nbsp; • &nbsp;NO QUARTERS NEEDED</div>
@@ -1152,7 +1192,7 @@
             <canvas class="title-fighter-portrait" id="titlePortraitRight" width="180" height="180"></canvas>
           </div>
           <span class="title-fighter-name" id="titleFighterRightName">RIVAL</span>
-          <span class="title-fighter-tag">RIVAL</span>
+          <span class="title-fighter-tag">FINAL BOSS</span>
         </div>
       </div>
 
@@ -1167,6 +1207,7 @@
             <div class="mode-group">
               <button class="pill-btn active" id="mode1p" type="button">1P VS AI</button>
               <button class="pill-btn" id="mode2p" type="button">2P LOCAL</button>
+              <button class="pill-btn" id="modeArcade" type="button">ARCADE LADDER</button>
               <button class="pill-btn" id="diffEasy" type="button">EASY</button>
               <button class="pill-btn active" id="diffNormal" type="button">NORMAL</button>
               <button class="pill-btn" id="diffHard" type="button">HARD</button>
@@ -1413,6 +1454,16 @@
           tauntText: 'TAUBA TAUBA!'
         }
       ];
+
+      const SHERU_BHAI = {
+        id: 'sheru', name: 'Sheru Bhai', shortName: 'SHERU BHAI',
+        primary: '#d62828', secondary: '#ffd166',
+        portraitTop: '#5d1020', portraitAccent: '#ffd166',
+        appearance: 'The final boss: a larger-than-life meme legend in a saffron pagri, dark shades and a gold-trimmed sherwani.',
+        specialName: 'Sheru Showdown', specialKind: 'tornado', specialCallout: 'SHERU SHOWDOWN!',
+        superName: 'Bhai Ka Raaj', superKind: 'dhamaka', superCallout: 'BHAI KA RAAJ!',
+        maxHp: 1250
+      };
 
       const STAGES = [
         { id: 'bazaar', name: 'Golden Bazaar Street', short: 'GOLDEN BAZAAR' },
@@ -2537,7 +2588,8 @@
         dhoni: ['#dca376', '#b5784b'],
         ravi: ['#e4ae82', '#bd7e52'],
         tiger: ['#eab88f', '#c38659'],
-        aujla: ['#e8b68c', '#c18458']
+        aujla: ['#e8b68c', '#c18458'],
+        sheru: ['#b9784f', '#855038']
       };
 
       function drawDetailedHead(ctx, id, expr, isPortrait) {
@@ -2649,10 +2701,25 @@
           // Diamond ear stud
           ctx.fillStyle = '#e0f7fa';
           ctx.beginPath(); ctx.arc(-13, 2, 1.7, 0, Math.PI * 2); ctx.fill();
+        } else if (id === 'sheru') {
+          ctx.fillStyle = '#381827';
+          ctx.beginPath();
+          ctx.moveTo(-13, 4); ctx.quadraticCurveTo(-11, 18, 0, 18);
+          ctx.quadraticCurveTo(11, 18, 13, 4); ctx.lineTo(8, 8);
+          ctx.quadraticCurveTo(0, 12, -8, 8); ctx.closePath(); ctx.fill();
+          ctx.fillStyle = '#2c1c24'; ctx.strokeStyle = '#ffd166'; ctx.lineWidth = 1.3;
+          drawRoundRect(ctx, -11, -5, 9.5, 6, 2); ctx.fill(); ctx.stroke();
+          drawRoundRect(ctx, 1.5, -5, 9.5, 6, 2); ctx.fill(); ctx.stroke();
+          ctx.beginPath(); ctx.moveTo(-2, -2); ctx.lineTo(2, -2); ctx.stroke();
+          ctx.fillStyle = '#d62828';
+          ctx.beginPath(); ctx.moveTo(-13, -9); ctx.quadraticCurveTo(0, -21, 13, -9);
+          ctx.lineTo(10, -5); ctx.quadraticCurveTo(0, -10, -10, -5); ctx.closePath(); ctx.fill();
+          ctx.fillStyle = '#ffd166';
+          ctx.beginPath(); ctx.arc(0, -12, 2, 0, Math.PI * 2); ctx.fill();
         }
 
         // Eyes & Eyebrows (skip under dark shades for Ravi & Aujla)
-        if (id !== 'ravi' && id !== 'aujla') {
+        if (id !== 'ravi' && id !== 'aujla' && id !== 'sheru') {
           ctx.fillStyle = '#ffffff';
           ctx.beginPath();
           ctx.ellipse(-5.2, -1.5, 2.7, expr === 'hurt' ? 1.2 : 2.1, 0, 0, Math.PI * 2);
@@ -2891,6 +2958,7 @@
         constructor(spec, slot, startX, facing) {
           this.spec = spec;
           this.slot = slot;
+          this.maxHp = spec.maxHp || STATS.maxHp;
           this.wins = 0;
           this.stats = { dmg: 0, maxCombo: 0, specials: 0 };
           this.resetRound(startX, facing);
@@ -2902,8 +2970,8 @@
           this.vx = 0;
           this.vy = 0;
           this.facing = facing;
-          this.hp = STATS.maxHp;
-          this.trailHp = STATS.maxHp;
+          this.hp = this.maxHp;
+          this.trailHp = this.maxHp;
           this.meter = Math.min(100, (this.meter || 0) * 0.5);
           this.specialCd = 0;
           this.state = 'idle'; // idle, walk, jump, block, dash, taunt, attack, hitstun, ko, victory
@@ -3657,6 +3725,7 @@
 
         drawOutfitColors() {
           const id = this.spec.id;
+          if (id === 'sheru') return { torso: '#d62828', trim: '#ffd166', pants: '#511326', shoe: '#261521', sleeve: '#b51f2b' };
           if (id === 'modi') return { torso: '#ff8a1f', trim: '#fff4e0', pants: '#f4efe6', shoe: '#4a2c1c', sleeve: '#fff4e0' };
           if (id === 'rahul') return { torso: '#f6f8fc', trim: '#22a0ff', pants: '#2c3d59', shoe: '#222630', sleeve: '#f6f8fc' };
           if (id === 'kejriwal') return { torso: '#2c4a6b', trim: '#b8324a', pants: '#343a45', shoe: '#1d1f26', sleeve: '#2c4a6b' };
@@ -4310,6 +4379,9 @@
         profileIdx: 0,
         p1Idx: 0,
         p2Idx: 1,
+        ladderActive: false,
+        ladderOpponents: [],
+        ladderIndex: 0,
         p1: null,
         p2: null,
         round: 1,
@@ -4340,9 +4412,9 @@
           this.ctx = this.canvas.getContext('2d');
           document.body.classList.add('title-active');
           renderPortrait(document.getElementById('titlePortraitLeft'), ROSTER[this.p1Idx]);
-          renderPortrait(document.getElementById('titlePortraitRight'), ROSTER[this.p2Idx]);
+          renderPortrait(document.getElementById('titlePortraitRight'), SHERU_BHAI);
           document.getElementById('titleFighterLeftName').textContent = ROSTER[this.p1Idx].shortName.toUpperCase();
-          document.getElementById('titleFighterRightName').textContent = ROSTER[this.p2Idx].shortName.toUpperCase();
+          document.getElementById('titleFighterRightName').textContent = SHERU_BHAI.shortName;
           arena.init();
           input.init();
           this.buildSetupUI();
@@ -4450,7 +4522,7 @@
           for (let i = 0; i < cards.length; i++) {
             const c = cards[i];
             const is1 = i === this.p1Idx;
-            const is2 = i === this.p2Idx;
+            const is2 = this.mode !== 'arcade' && i === this.p2Idx;
             c.classList.remove('sel-p1', 'sel-p2', 'sel-both');
             c.setAttribute('aria-pressed', String(is1 || is2));
             const bs = c.querySelector('.badge-slot');
@@ -4466,10 +4538,13 @@
               bs.innerHTML = '<span class="slot-tag p2">' + (this.mode === '1p' ? 'CPU' : 'P2') + '</span>';
             }
           }
+          if (this.mode === 'arcade' && this.pickSlot === 2) this.pickSlot = 1;
+          document.getElementById('tabP2').hidden = this.mode === 'arcade';
           document.getElementById('tabP1').classList.toggle('active', this.pickSlot === 1);
           document.getElementById('tabP2').classList.toggle('active', this.pickSlot === 2);
-          const matchup =
-            ROSTER[this.p1Idx].shortName + ' (P1)  VS  ' + ROSTER[this.p2Idx].shortName + ' (' + (this.mode === '1p' ? 'CPU' : 'P2') + ')';
+          const matchup = this.mode === 'arcade'
+            ? ROSTER[this.p1Idx].shortName + ' • 7 RIVALS • SHERU BHAI FINAL BOSS'
+            : ROSTER[this.p1Idx].shortName + ' (P1)  VS  ' + ROSTER[this.p2Idx].shortName + ' (' + (this.mode === '1p' ? 'CPU' : 'P2') + ')';
           document.getElementById('matchupSummary').textContent = matchup;
           document.getElementById('stageMatchupSummary').textContent = matchup;
           this.refreshFighterProfile();
@@ -4511,6 +4586,18 @@
           this.showCallout(STAGES[arena.stageIdx].short, 'ARENA SWITCHED!', 60);
         },
 
+        setMode: function (mode) {
+          this.mode = mode;
+          this.pickSlot = 1;
+          this.profileIdx = this.p1Idx;
+          document.getElementById('mode1p').classList.toggle('active', mode === '1p');
+          document.getElementById('mode2p').classList.toggle('active', mode === '2p');
+          document.getElementById('modeArcade').classList.toggle('active', mode === 'arcade');
+          document.getElementById('btnRematch').textContent = mode === 'arcade' ? 'RUN IT BACK' : 'REMATCH';
+          this.refreshSetupSelection();
+          this.updateControlsBar();
+        },
+
         bindButtons: function () {
           document.getElementById('btnEnterArena').addEventListener('click', function () {
             sfx.unlock();
@@ -4522,24 +4609,20 @@
             game.refreshSetupSelection();
           });
           document.getElementById('tabP2').addEventListener('click', function () {
+            if (game.mode === 'arcade') return;
             game.pickSlot = 2;
             game.profileIdx = game.p2Idx;
             game.refreshSetupSelection();
           });
 
           document.getElementById('mode1p').addEventListener('click', function () {
-            game.mode = '1p';
-            document.getElementById('mode1p').classList.add('active');
-            document.getElementById('mode2p').classList.remove('active');
-            game.refreshSetupSelection();
-            game.updateControlsBar();
+            game.setMode('1p');
           });
           document.getElementById('mode2p').addEventListener('click', function () {
-            game.mode = '2p';
-            document.getElementById('mode2p').classList.add('active');
-            document.getElementById('mode1p').classList.remove('active');
-            game.refreshSetupSelection();
-            game.updateControlsBar();
+            game.setMode('2p');
+          });
+          document.getElementById('modeArcade').addEventListener('click', function () {
+            game.setMode('arcade');
           });
 
           const diffs = ['easy', 'normal', 'hard'];
@@ -4643,6 +4726,7 @@
 
           const toMenu = function () {
             game.paused = false;
+            game.ladderActive = false;
             game.phase = 'setup';
             document.body.classList.add('selection-active');
             document.getElementById('pauseOverlay').classList.add('hidden');
@@ -4662,7 +4746,7 @@
 
         updateControlsBar: function () {
           const cl = document.getElementById('controlsList');
-          if (this.mode === '1p') {
+          if (this.mode !== '2p') {
             cl.innerHTML =
               '<span><span class="kbd">A/D</span> Move</span>' +
               '<span><span class="kbd">2x A/D</span> Dash/Roll</span>' +
@@ -4717,13 +4801,43 @@
             arena.stageIdx = Math.floor(Math.random() * STAGES.length);
             this.refreshStageUI();
           }
-          aiBrain.setDifficulty(this.diff);
-          this.p1 = new Fighter(ROSTER[this.p1Idx], 1, 250, 1);
-          this.p2 = new Fighter(ROSTER[this.p2Idx], 2, W - 250, -1);
-          this.round = 1;
           this.paused = false;
-          this.phase = 'vsSplash';
+          this.ladderActive = this.mode === 'arcade';
+          this.ladderIndex = 0;
+          this.ladderOpponents = [];
+          this.p1 = new Fighter(ROSTER[this.p1Idx], 1, 250, 1);
+          if (this.ladderActive) {
+            for (let i = 0; i < ROSTER.length; i++) {
+              if (i !== this.p1Idx) this.ladderOpponents.push(ROSTER[i]);
+            }
+            this.ladderOpponents.push(SHERU_BHAI);
+            this.startLadderFight();
+          } else {
+            aiBrain.setDifficulty(this.diff);
+            this.p2 = new Fighter(ROSTER[this.p2Idx], 2, W - 250, -1);
+            this.round = 1;
+            this.showVersusSplash();
+          }
           document.body.classList.remove('selection-active');
+          document.getElementById('titleOverlay').classList.add('hidden');
+          document.getElementById('setupOverlay').classList.add('hidden');
+          document.getElementById('stageOverlay').classList.add('hidden');
+          document.getElementById('pauseOverlay').classList.add('hidden');
+          document.getElementById('victoryOverlay').classList.add('hidden');
+        },
+
+        startLadderFight: function () {
+          const opponent = this.ladderOpponents[this.ladderIndex];
+          this.p1.wins = 0;
+          this.p1.resetRound(250, 1);
+          this.p2 = new Fighter(opponent, 2, W - 250, -1);
+          this.round = this.ladderIndex + 1;
+          aiBrain.setDifficulty(opponent.id === 'sheru' ? 'hard' : this.diff);
+          this.showVersusSplash();
+        },
+
+        showVersusSplash: function () {
+          this.phase = 'vsSplash';
           this.phaseTimer = this.vsSplashDuration;
           this.koZoom = 0;
           this.koZoomTimer = 0;
@@ -4732,11 +4846,6 @@
           this.particles = [];
           this.waves = [];
           this.texts = [];
-          document.getElementById('titleOverlay').classList.add('hidden');
-          document.getElementById('setupOverlay').classList.add('hidden');
-          document.getElementById('stageOverlay').classList.add('hidden');
-          document.getElementById('pauseOverlay').classList.add('hidden');
-          document.getElementById('victoryOverlay').classList.add('hidden');
         },
 
         startRound: function () {
@@ -4754,7 +4863,11 @@
           referee.reset();
           referee.react('start');
           sfx.play('round');
-          this.showCallout('ROUND ' + this.round, 'TAIYAR HO JAO!', 58);
+          this.showCallout(
+            this.ladderActive ? 'FIGHT ' + (this.ladderIndex + 1) : 'ROUND ' + this.round,
+            this.ladderActive && this.p2.spec.id === 'sheru' ? 'FINAL BOSS: SHERU BHAI!' : 'TAIYAR HO JAO!',
+            58
+          );
         },
 
         showCallout: function (main, sub, dur) {
@@ -4909,6 +5022,19 @@
           this.showCallout('K.O.!', 'SHABAASH ' + winner.spec.shortName + '!', 110);
         },
 
+        finishArcadeLadder: function (won) {
+          this.phase = 'matchOver';
+          aiBrain.setDifficulty(this.diff);
+          sfx.play(won ? 'victory' : 'ko');
+          this.spawnSparks(W / 2, 90, won ? '#ffd54f' : '#d62828', 50);
+          document.getElementById('victoryTitle').textContent = won ? 'ARCADE LADDER COMPLETE!' : 'ARCADE RUN OVER';
+          document.getElementById('victorySub').textContent = won
+            ? 'Sheru Bhai awards the in-game ₹1,00,00,00,000 prize! Champion: ' + this.p1.spec.shortName + ' • Total Damage: ' + this.p1.stats.dmg + ' • Max Combo: ' + this.p1.stats.maxCombo + ' • Arena: ' + STAGES[arena.stageIdx].name
+            : 'Rivals defeated: ' + this.ladderIndex + ' of 8 • Prize not awarded • Defeated by ' + this.p2.spec.shortName + ' • Total Damage: ' + this.p1.stats.dmg + ' • Max Combo: ' + this.p1.stats.maxCombo;
+          document.getElementById('btnRematch').textContent = 'RUN IT BACK';
+          document.getElementById('victoryOverlay').classList.remove('hidden');
+        },
+
         step: function () {
           this.frame++;
           arena.step();
@@ -4967,7 +5093,18 @@
           } else if (this.phase === 'roundOver') {
             this.phaseTimer--;
             if (this.phaseTimer <= 0) {
-              if (this.p1.wins >= 2 || this.p2.wins >= 2) {
+              if (this.ladderActive) {
+                if (this.p1.wins > this.p2.wins) {
+                  if (this.ladderIndex + 1 < this.ladderOpponents.length) {
+                    this.ladderIndex++;
+                    this.startLadderFight();
+                  } else {
+                    this.finishArcadeLadder(true);
+                  }
+                } else {
+                  this.finishArcadeLadder(false);
+                }
+              } else if (this.p1.wins >= 2 || this.p2.wins >= 2) {
                 this.phase = 'matchOver';
                 const champ = this.p1.wins >= 2 ? this.p1 : this.p2;
                 sfx.play('victory');
@@ -5081,11 +5218,27 @@
           ctx.font = '900 28px sans-serif'; ctx.textAlign = 'center';
           ctx.fillText(secs < 10 ? '0' + secs : String(secs), W / 2, 46);
           ctx.fillStyle = '#ffcf6e'; ctx.font = '800 9px sans-serif';
-          ctx.fillText('ROUND ' + this.round, W / 2, 60);
+          ctx.fillText(this.ladderActive ? 'FIGHT ' + (this.ladderIndex + 1) + ' / 8' : 'ROUND ' + this.round, W / 2, 60);
           ctx.restore();
 
           this.drawFighterBar(ctx, this.p1, true);
           this.drawFighterBar(ctx, this.p2, false);
+
+          if (this.ladderActive) {
+            ctx.save();
+            ctx.fillStyle = 'rgba(32, 7, 28, 0.88)';
+            ctx.strokeStyle = '#ffbe3b'; ctx.lineWidth = 1.4;
+            drawRoundRect(ctx, W / 2 - 112, 70, 224, 24, 10); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = '#fff5b8'; ctx.font = '800 9px sans-serif'; ctx.textAlign = 'center';
+            ctx.fillText(this.p2.spec.id === 'sheru' ? 'FINAL BOSS: SHERU BHAI' : 'OPPONENTS DEFEATED: ' + this.ladderIndex + ' / 8', W / 2, 80);
+            for (let i = 0; i < this.ladderOpponents.length; i++) {
+              ctx.fillStyle = i < this.ladderIndex ? '#43d96b' : (i === this.ladderIndex ? '#ffd54f' : 'rgba(255,255,255,0.28)');
+              ctx.beginPath();
+              ctx.arc(W / 2 - 70 + i * 20, 87, i === this.ladderIndex ? 3.4 : 2.5, 0, Math.PI * 2);
+              ctx.fill();
+            }
+            ctx.restore();
+          }
 
           // Live Indian Beat Equalizer Ticker
           if (this.beatBannerTimer > 0 && sfx.beatsEnabled) {
@@ -5122,8 +5275,8 @@
           ctx.fillStyle = leftGrad;
           ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(520, 0); ctx.lineTo(420, H); ctx.lineTo(0, H); ctx.closePath(); ctx.fill();
           const rightGrad = ctx.createLinearGradient(W, 0, 460, H);
-          rightGrad.addColorStop(0, 'rgba(0, 184, 212, 0.72)');
-          rightGrad.addColorStop(1, 'rgba(47, 13, 74, 0.68)');
+          rightGrad.addColorStop(0, this.p2.spec.id === 'sheru' ? 'rgba(214, 40, 40, 0.84)' : 'rgba(0, 184, 212, 0.72)');
+          rightGrad.addColorStop(1, this.p2.spec.id === 'sheru' ? 'rgba(68, 8, 24, 0.82)' : 'rgba(47, 13, 74, 0.68)');
           ctx.fillStyle = rightGrad;
           ctx.beginPath(); ctx.moveTo(W, 0); ctx.lineTo(440, 0); ctx.lineTo(540, H); ctx.lineTo(W, H); ctx.closePath(); ctx.fill();
 
@@ -5148,18 +5301,23 @@
 
           ctx.font = '900 15px sans-serif';
           ctx.fillStyle = '#fff5d6';
-          ctx.fillText('ROUND 1  •  ' + STAGES[arena.stageIdx].name.toUpperCase(), W / 2, 54);
+          const splashLabel = this.ladderActive
+            ? (this.p2.spec.id === 'sheru' ? 'FINAL BOSS  •  FIGHT 8 / 8' : 'ARCADE LADDER  •  FIGHT ' + (this.ladderIndex + 1) + ' / 8')
+            : 'ROUND 1  •  ' + STAGES[arena.stageIdx].name.toUpperCase();
+          ctx.fillText(splashLabel, W / 2, 54);
           ctx.fillStyle = '#ffdc74';
           ctx.font = '900 21px sans-serif';
           ctx.fillText(this.p1.spec.shortName.toUpperCase(), 187, 350);
-          ctx.fillStyle = '#a8f4ff';
+          ctx.fillStyle = this.p2.spec.id === 'sheru' ? '#ffd166' : '#a8f4ff';
           ctx.fillText(this.p2.spec.shortName.toUpperCase(), 773, 350);
 
           ctx.fillStyle = 'rgba(20, 4, 25, 0.9)';
           drawRoundRect(ctx, W / 2 - 152, 414, 304, 48, 12); ctx.fill();
           ctx.strokeStyle = '#ffbe3b'; ctx.lineWidth = 2; ctx.stroke();
           ctx.fillStyle = '#fff5b8'; ctx.font = '900 15px sans-serif';
-          ctx.fillText(this.mode === '1p' ? 'PLAYER 1  VS  CPU' : 'LOCAL PLAYER 1  VS  PLAYER 2', W / 2, 444);
+          ctx.fillText(this.ladderActive
+            ? (this.p2.spec.id === 'sheru' ? 'FINAL BOSS • 25% BONUS HEALTH • HARD AI' : 'RIVAL ' + (this.ladderIndex + 1) + ' OF 7')
+            : (this.mode === '1p' ? 'PLAYER 1  VS  CPU' : 'LOCAL PLAYER 1  VS  PLAYER 2'), W / 2, 444);
           ctx.restore();
         },
 
@@ -5207,12 +5365,12 @@
           drawRoundRect(ctx, x, y, bw, bh, 6); ctx.fill(); ctx.stroke();
 
           // Delayed Red Drain Trail
-          const trailW = Math.max(0, (f.trailHp / STATS.maxHp) * (bw - 4));
+          const trailW = Math.max(0, (f.trailHp / f.maxHp) * (bw - 4));
           ctx.fillStyle = '#e53935';
           ctx.fillRect(isLeft ? x + 2 : x + bw - 2 - trailW, y + 2, trailW, bh - 4);
 
           // Active Health Fill
-          const hpPct = Math.max(0, f.hp / STATS.maxHp);
+          const hpPct = Math.max(0, f.hp / f.maxHp);
           const hpW = hpPct * (bw - 4);
           const hg = ctx.createLinearGradient(x, y, x + bw, y);
           if (hpPct < 0.25) { hg.addColorStop(0, '#ff3d00'); hg.addColorStop(1, '#ff9100'); }
