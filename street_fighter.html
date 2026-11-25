@@ -2614,83 +2614,132 @@
 
         // Hair & Beard Specifics
         if (id === 'modi') {
-          // Silver-white sculpted hair & full signature beard
-          ctx.fillStyle = '#eceff4';
-          ctx.beginPath(); ctx.arc(0, -5, 14, Math.PI, 0); ctx.fill();
+          ctx.fillStyle = '#e9ebee';
           ctx.beginPath();
-          ctx.moveTo(-12.5, 2); ctx.quadraticCurveTo(-11, 15, 0, 17); ctx.quadraticCurveTo(11, 15, 12.5, 2);
-          ctx.lineTo(8, 5); ctx.lineTo(-8, 5); ctx.closePath(); ctx.fill();
-          // Mustache
-          ctx.fillStyle = '#ffffff';
-          ctx.beginPath(); ctx.ellipse(0, 5.5, 6.5, 2.2, 0, 0, Math.PI * 2); ctx.fill();
-          // Frameless glasses
-          ctx.strokeStyle = '#d4af37'; ctx.lineWidth = 1.2;
+          ctx.moveTo(-14, -3); ctx.quadraticCurveTo(-14, -18, 0, -17);
+          ctx.quadraticCurveTo(13, -17, 14, -3); ctx.lineTo(10, -5);
+          ctx.quadraticCurveTo(4, -10, 0, -8); ctx.quadraticCurveTo(-8, -11, -11, -3);
+          ctx.closePath(); ctx.fill();
+          ctx.fillStyle = '#d9dde2';
+          ctx.beginPath(); ctx.ellipse(-12, -1, 2.4, 5, 0, 0, Math.PI * 2); ctx.fill();
+          ctx.beginPath(); ctx.ellipse(12, -1, 2.4, 5, 0, 0, Math.PI * 2); ctx.fill();
+          ctx.strokeStyle = '#c4c9d0'; ctx.lineWidth = 0.9;
+          ctx.beginPath();
+          ctx.moveTo(-8, -12); ctx.quadraticCurveTo(-2, -15, 3, -13);
+          ctx.moveTo(5, -12); ctx.lineTo(9, -10);
+          ctx.stroke();
+          ctx.fillStyle = '#f1f1ee';
+          ctx.beginPath();
+          ctx.moveTo(-12, 1); ctx.quadraticCurveTo(-14, 10, -8, 15);
+          ctx.quadraticCurveTo(-4, 19, 0, 18); ctx.quadraticCurveTo(5, 19, 9, 15);
+          ctx.quadraticCurveTo(14, 9, 12, 1); ctx.lineTo(8, 4);
+          ctx.quadraticCurveTo(0, 7, -8, 4); ctx.closePath(); ctx.fill();
+          ctx.fillStyle = '#fffefa';
+          ctx.beginPath(); ctx.ellipse(0, 5.5, 7.3, 2.8, 0, 0, Math.PI * 2); ctx.fill();
+          ctx.strokeStyle = '#d4af37'; ctx.lineWidth = 1.15;
           drawRoundRect(ctx, -9.5, -4, 7.5, 5, 1.5); ctx.stroke();
           drawRoundRect(ctx, 2, -4, 7.5, 5, 1.5); ctx.stroke();
           ctx.beginPath(); ctx.moveTo(-2, -1.5); ctx.lineTo(2, -1.5); ctx.stroke();
         } else if (id === 'rahul') {
-          // Dark salt-and-pepper swept hair & trimmed beard
-          ctx.fillStyle = '#25262e';
-          ctx.beginPath(); ctx.arc(0, -5.5, 14, Math.PI * 0.95, Math.PI * 0.05); ctx.fill();
-          ctx.fillStyle = 'rgba(42, 44, 54, 0.72)';
+          ctx.fillStyle = '#24242a';
           ctx.beginPath();
-          ctx.moveTo(-12, 3); ctx.quadraticCurveTo(-10, 15, 0, 16); ctx.quadraticCurveTo(10, 15, 12, 3);
-          ctx.lineTo(8, 7); ctx.lineTo(-8, 7); ctx.closePath(); ctx.fill();
+          ctx.moveTo(-14, -2); ctx.quadraticCurveTo(-13, -17, -4, -17);
+          ctx.quadraticCurveTo(4, -20, 12, -13); ctx.quadraticCurveTo(15, -8, 14, -2);
+          ctx.lineTo(10, -5); ctx.quadraticCurveTo(4, -9, -2, -7);
+          ctx.quadraticCurveTo(-9, -10, -12, -3); ctx.closePath(); ctx.fill();
+          ctx.strokeStyle = '#aaa9a4'; ctx.lineWidth = 1;
+          ctx.beginPath(); ctx.moveTo(-12, -6); ctx.lineTo(-10, -3); ctx.moveTo(11, -7); ctx.lineTo(12, -3); ctx.stroke();
+          ctx.fillStyle = '#393735';
+          ctx.beginPath();
+          ctx.moveTo(-12, 1); ctx.quadraticCurveTo(-13, 11, -7, 16);
+          ctx.quadraticCurveTo(0, 21, 7, 16); ctx.quadraticCurveTo(13, 10, 12, 1);
+          ctx.lineTo(8, 3); ctx.quadraticCurveTo(0, 8, -8, 3); ctx.closePath(); ctx.fill();
+          ctx.fillStyle = '#4b4844';
+          ctx.beginPath(); ctx.ellipse(0, 5, 7.5, 2.5, 0, 0, Math.PI * 2); ctx.fill();
+          ctx.strokeStyle = '#a4a19c'; ctx.lineWidth = 0.8;
+          ctx.beginPath();
+          ctx.moveTo(-8, 9); ctx.lineTo(-5, 12); ctx.moveTo(-3, 11); ctx.lineTo(-1, 14);
+          ctx.moveTo(4, 10); ctx.lineTo(7, 12); ctx.stroke();
         } else if (id === 'kejriwal') {
-          // Neat dark hair, mustache & thin-rim glasses
+          // Short side-parted hair, recognizable moustache and square spectacles.
           ctx.fillStyle = '#242329';
-          ctx.beginPath(); ctx.arc(0, -6, 13.5, Math.PI * 1.05, -0.05); ctx.fill();
+          ctx.beginPath();
+          ctx.moveTo(-14, -3); ctx.quadraticCurveTo(-13, -17, -2, -17);
+          ctx.quadraticCurveTo(7, -19, 14, -10); ctx.lineTo(11, -6);
+          ctx.quadraticCurveTo(4, -11, -3, -8); ctx.lineTo(-11, -4); ctx.closePath(); ctx.fill();
+          ctx.strokeStyle = '#45434a'; ctx.lineWidth = 0.9;
+          ctx.beginPath(); ctx.moveTo(-8, -13); ctx.lineTo(-2, -15); ctx.moveTo(2, -14); ctx.lineTo(7, -12); ctx.stroke();
           ctx.fillStyle = '#242329';
-          ctx.beginPath(); ctx.ellipse(0, 6, 6.5, 2.2, 0, 0, Math.PI * 2); ctx.fill();
+          ctx.beginPath(); ctx.moveTo(-7, 4); ctx.quadraticCurveTo(-3, 2, 0, 4);
+          ctx.quadraticCurveTo(4, 2, 7, 4); ctx.lineTo(5, 7);
+          ctx.quadraticCurveTo(0, 5, -5, 7); ctx.closePath(); ctx.fill();
           ctx.strokeStyle = '#1b1d26'; ctx.lineWidth = 1.4;
-          drawRoundRect(ctx, -10, -4.5, 8, 5.5, 1.5); ctx.stroke();
-          drawRoundRect(ctx, 2, -4.5, 8, 5.5, 1.5); ctx.stroke();
+          drawRoundRect(ctx, -10.5, -5, 9, 6.5, 1.2); ctx.stroke();
+          drawRoundRect(ctx, 1.5, -5, 9, 6.5, 1.2); ctx.stroke();
           ctx.beginPath(); ctx.moveTo(-2, -1.5); ctx.lineTo(2, -1.5); ctx.stroke();
         } else if (id === 'mamata') {
-          // Classic tied bun & bindi
+          // Tied-back hair, wisps at the temples and a small red bindi.
           ctx.fillStyle = '#222026';
-          ctx.beginPath(); ctx.arc(-11, -7, 6.5, 0, Math.PI * 2); ctx.fill();
-          ctx.beginPath(); ctx.arc(0, -5, 14, Math.PI * 0.95, Math.PI * 0.05); ctx.fill();
+          ctx.beginPath(); ctx.arc(-13, -7, 6.5, 0, Math.PI * 2); ctx.fill();
+          ctx.beginPath(); ctx.arc(0, -5, 14, Math.PI * 1.04, Math.PI * 0.02); ctx.fill();
+          ctx.beginPath(); ctx.ellipse(-13, -7, 3.8, 4.6, 0, 0, Math.PI * 2); ctx.fill();
+          ctx.strokeStyle = '#48434a'; ctx.lineWidth = 1;
+          ctx.beginPath(); ctx.moveTo(-12, -2); ctx.quadraticCurveTo(-14, 1, -12, 4);
+          ctx.moveTo(12, -3); ctx.quadraticCurveTo(14, 0, 12, 3); ctx.stroke();
           ctx.fillStyle = '#d81b60';
           ctx.beginPath(); ctx.arc(0, -6.5, 1.8, 0, Math.PI * 2); ctx.fill();
         } else if (id === 'dhoni') {
-          // Iconic Captain Cool athletic styled hair & sharp stubble
+          // Short athletic crop and close stubble.
           ctx.fillStyle = '#1c1b22';
           ctx.beginPath();
-          ctx.moveTo(-13.5, -3); ctx.quadraticCurveTo(-12, -18, 2, -17); ctx.quadraticCurveTo(15, -16, 14, -3);
+          ctx.moveTo(-14, -3); ctx.quadraticCurveTo(-12, -17, 0, -17);
+          ctx.quadraticCurveTo(13, -18, 14, -3); ctx.lineTo(10, -7);
+          ctx.quadraticCurveTo(0, -11, -10, -6);
           ctx.closePath(); ctx.fill();
-          ctx.fillStyle = 'rgba(35, 32, 42, 0.35)';
-          ctx.beginPath(); ctx.arc(0, 5, 10.5, 0.2, Math.PI - 0.2); ctx.fill();
+          ctx.strokeStyle = '#342a28'; ctx.lineWidth = 1.1;
+          ctx.beginPath(); ctx.arc(0, 3, 10.5, 0.22, Math.PI - 0.22); ctx.stroke();
+          ctx.strokeStyle = '#29252b'; ctx.lineWidth = 0.8;
+          ctx.beginPath(); ctx.moveTo(-7, 10); ctx.lineTo(-5, 12); ctx.moveTo(0, 11); ctx.lineTo(1, 13); ctx.moveTo(6, 10); ctx.lineTo(8, 12); ctx.stroke();
         } else if (id === 'ravi') {
-          // Filmy swept superstar hair + tinted golden-crimson shades + tilak
+          // Side-swept hair, expressive eyes, a strong moustache and tilak.
           ctx.fillStyle = '#1f1a22';
           ctx.beginPath();
-          ctx.moveTo(-14, -2); ctx.quadraticCurveTo(-10, -19, 4, -17); ctx.quadraticCurveTo(16, -15, 14, -2);
+          ctx.moveTo(-14, -2); ctx.quadraticCurveTo(-10, -19, 3, -18);
+          ctx.quadraticCurveTo(15, -17, 14, -2); ctx.lineTo(10, -6);
+          ctx.quadraticCurveTo(4, -11, -3, -8); ctx.lineTo(-12, -3);
           ctx.closePath(); ctx.fill();
-          ctx.fillStyle = '#ff3b5c';
-          ctx.fillRect(-1, -10, 2, 5);
+          ctx.strokeStyle = '#51434a'; ctx.lineWidth = 1;
+          ctx.beginPath(); ctx.moveTo(-5, -13); ctx.quadraticCurveTo(2, -17, 9, -12); ctx.stroke();
+          ctx.fillStyle = '#c62828';
+          ctx.fillRect(-1, -10, 2.2, 6);
           ctx.fillStyle = '#302027';
           ctx.beginPath();
-          ctx.moveTo(-7, 3); ctx.quadraticCurveTo(-3, 1, 0, 4);
-          ctx.quadraticCurveTo(3, 1, 7, 3); ctx.lineTo(5, 6);
-          ctx.quadraticCurveTo(0, 4, -5, 6); ctx.closePath(); ctx.fill();
-          // Filmy shades
-          ctx.fillStyle = 'rgba(130, 12, 36, 0.9)';
-          ctx.strokeStyle = '#ffd54f'; ctx.lineWidth = 1.3;
-          drawRoundRect(ctx, -11, -5, 9.5, 6, 2); ctx.fill(); ctx.stroke();
-          drawRoundRect(ctx, 1.5, -5, 9.5, 6, 2); ctx.fill(); ctx.stroke();
+          ctx.moveTo(-8, 4); ctx.quadraticCurveTo(-4, 1.5, 0, 4);
+          ctx.quadraticCurveTo(4, 1.5, 8, 4); ctx.lineTo(6, 7);
+          ctx.quadraticCurveTo(0, 5, -6, 7); ctx.closePath(); ctx.fill();
         } else if (id === 'tiger') {
-          // Action-hero wavy voluminous hair & chiseled jaw
+          // Voluminous wavy top with shorter sides and a clean, angular jaw.
           ctx.fillStyle = '#241a16';
           ctx.beginPath();
-          ctx.moveTo(-14, -2); ctx.quadraticCurveTo(-15, -20, 0, -19); ctx.quadraticCurveTo(16, -18, 14.5, -2);
-          ctx.closePath(); ctx.fill();
-          ctx.fillStyle = '#3b2820';
-          ctx.beginPath(); ctx.arc(-4, -12, 5, 0, Math.PI * 2); ctx.arc(5, -11, 5, 0, Math.PI * 2); ctx.fill();
+          ctx.moveTo(-14, -2); ctx.quadraticCurveTo(-16, -11, -11, -17);
+          ctx.quadraticCurveTo(-9, -23, -4, -18); ctx.quadraticCurveTo(0, -24, 4, -18);
+          ctx.quadraticCurveTo(10, -22, 13, -14); ctx.quadraticCurveTo(16, -8, 14, -2);
+          ctx.lineTo(10, -6); ctx.quadraticCurveTo(1, -10, -10, -5); ctx.closePath(); ctx.fill();
+          ctx.strokeStyle = '#554039'; ctx.lineWidth = 1.1;
+          ctx.beginPath();
+          ctx.moveTo(-8, -15); ctx.quadraticCurveTo(-5, -19, -2, -16);
+          ctx.moveTo(-1, -14); ctx.quadraticCurveTo(3, -19, 6, -15);
+          ctx.moveTo(6, -12); ctx.quadraticCurveTo(9, -16, 11, -12);
+          ctx.stroke();
         } else if (id === 'aujla') {
-          // Punjabi popstar fade + sharp dark beard + stylish shades + diamond stud
+          // Tapered fade, dense beard, dark shades and a signature ear stud.
           ctx.fillStyle = '#17151c';
-          ctx.beginPath(); ctx.arc(0, -6.5, 13.5, Math.PI * 1.05, -0.05); ctx.fill();
+          ctx.beginPath();
+          ctx.moveTo(-14, -2); ctx.quadraticCurveTo(-14, -12, -8, -15);
+          ctx.quadraticCurveTo(0, -20, 10, -14); ctx.quadraticCurveTo(15, -9, 14, -2);
+          ctx.lineTo(10, -6); ctx.quadraticCurveTo(0, -10, -10, -5); ctx.closePath(); ctx.fill();
+          ctx.strokeStyle = '#514d56'; ctx.lineWidth = 1;
+          ctx.beginPath(); ctx.moveTo(-8, -12); ctx.lineTo(-3, -15); ctx.moveTo(-5, -10); ctx.lineTo(0, -13); ctx.stroke();
           ctx.beginPath();
           ctx.moveTo(-12.5, 2); ctx.quadraticCurveTo(-11, 16, 0, 17); ctx.quadraticCurveTo(11, 16, 12.5, 2);
           ctx.lineTo(8, 6); ctx.lineTo(-8, 6); ctx.closePath(); ctx.fill();
@@ -2718,8 +2767,8 @@
           ctx.beginPath(); ctx.arc(0, -12, 2, 0, Math.PI * 2); ctx.fill();
         }
 
-        // Eyes & Eyebrows (skip under dark shades for Ravi & Aujla)
-        if (id !== 'ravi' && id !== 'aujla' && id !== 'sheru') {
+        // Eyes & brows stay visible for every fighter except those wearing dark shades.
+        if (id !== 'aujla' && id !== 'sheru') {
           ctx.fillStyle = '#ffffff';
           ctx.beginPath();
           ctx.ellipse(-5.2, -1.5, 2.7, expr === 'hurt' ? 1.2 : 2.1, 0, 0, Math.PI * 2);
@@ -2817,6 +2866,41 @@
           ctx.moveTo(24, 38); ctx.lineTo(24, 47);
         }
         ctx.stroke();
+
+        ctx.lineWidth = 1.2;
+        if (spec.id === 'modi') {
+          ctx.strokeStyle = '#d88735';
+          ctx.beginPath();
+          ctx.moveTo(17, 33); ctx.lineTo(20, 39); ctx.lineTo(22, 34);
+          ctx.moveTo(31, 33); ctx.lineTo(28, 39); ctx.lineTo(26, 34);
+          ctx.stroke();
+          ctx.fillStyle = '#d4af37';
+          for (let b = 0; b < 3; b++) {
+            ctx.beginPath(); ctx.arc(24, 39 + b * 3, 0.7, 0, Math.PI * 2); ctx.fill();
+          }
+        } else if (spec.id === 'rahul') {
+          ctx.strokeStyle = '#d7e8df';
+          ctx.beginPath(); ctx.moveTo(21, 33); ctx.lineTo(24, 37); ctx.lineTo(27, 33); ctx.stroke();
+        } else if (spec.id === 'kejriwal') {
+          ctx.strokeStyle = '#b8324a'; ctx.lineWidth = 3;
+          ctx.beginPath(); ctx.moveTo(19, 32); ctx.lineTo(24, 38); ctx.lineTo(29, 32);
+          ctx.moveTo(28, 35); ctx.lineTo(31, 46); ctx.stroke();
+        } else if (spec.id === 'mamata') {
+          ctx.strokeStyle = '#4c91c5'; ctx.lineWidth = 2;
+          ctx.beginPath(); ctx.moveTo(15, 34); ctx.lineTo(32, 47); ctx.stroke();
+        } else if (spec.id === 'dhoni') {
+          ctx.fillStyle = '#ffd54f'; ctx.font = '900 7px sans-serif'; ctx.textAlign = 'center';
+          ctx.fillText('7', 24, 45);
+        } else if (spec.id === 'ravi') {
+          ctx.strokeStyle = '#d4af37'; ctx.beginPath(); ctx.arc(24, 36, 5, 0.2, Math.PI - 0.2); ctx.stroke();
+        } else if (spec.id === 'tiger') {
+          ctx.strokeStyle = '#ff5722';
+          ctx.beginPath(); ctx.moveTo(13, 35); ctx.lineTo(18, 47); ctx.moveTo(35, 35); ctx.lineTo(30, 47); ctx.stroke();
+        } else if (spec.id === 'aujla') {
+          ctx.strokeStyle = '#ffd54f'; ctx.lineWidth = 1;
+          ctx.beginPath(); ctx.arc(24, 35, 6, 0.1, Math.PI - 0.1); ctx.stroke();
+          ctx.fillStyle = '#ffd54f'; ctx.beginPath(); ctx.arc(24, 40, 1, 0, Math.PI * 2); ctx.fill();
+        }
 
         ctx.translate(24, 26);
         ctx.scale(1.18, 1.18);
@@ -4133,9 +4217,16 @@
 
           // Outfit Details
           if (id === 'modi') {
-            ctx.fillStyle = c.trim; ctx.fillRect(-3, -38, 6, 38);
+            ctx.fillStyle = '#f4efe6'; ctx.fillRect(-3, -38, 6, 38);
+            ctx.strokeStyle = '#d88735'; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(-9, -38); ctx.lineTo(-4, -26); ctx.moveTo(9, -38); ctx.lineTo(4, -26); ctx.stroke();
             ctx.fillStyle = '#d4af37';
             for (let b = 0; b < 4; b++) { ctx.beginPath(); ctx.arc(0, -32 + b * 8, 1.5, 0, Math.PI * 2); ctx.fill(); }
+          } else if (id === 'rahul') {
+            ctx.strokeStyle = '#e0e5e8'; ctx.lineWidth = 1.5;
+            ctx.beginPath(); ctx.moveTo(-6, -38); ctx.lineTo(0, -31); ctx.lineTo(6, -38); ctx.stroke();
+            ctx.fillStyle = '#22a0ff';
+            for (let b = 0; b < 3; b++) { ctx.beginPath(); ctx.arc(0, -25 + b * 8, 0.9, 0, Math.PI * 2); ctx.fill(); }
           } else if (id === 'dhoni') {
             ctx.fillStyle = '#ff9933'; ctx.fillRect(-14, -34, 28, 4);
             ctx.fillStyle = '#ffd54f'; ctx.font = '900 13px sans-serif'; ctx.textAlign = 'center';
@@ -4153,8 +4244,10 @@
             ctx.strokeStyle = '#ffd54f'; ctx.lineWidth = 2.2;
             ctx.beginPath(); ctx.moveTo(-6, -39); ctx.lineTo(-2, -16); ctx.moveTo(6, -39); ctx.lineTo(2, -16); ctx.stroke();
           } else if (id === 'tiger') {
-            ctx.strokeStyle = '#ff5722'; ctx.lineWidth = 2.5;
-            ctx.beginPath(); ctx.moveTo(-12, -36); ctx.lineTo(12, -6); ctx.moveTo(12, -36); ctx.lineTo(-12, -6); ctx.stroke();
+            ctx.strokeStyle = '#ff5722'; ctx.lineWidth = 2.2;
+            ctx.beginPath(); ctx.moveTo(-11, -38); ctx.lineTo(-8, -8); ctx.moveTo(11, -38); ctx.lineTo(8, -8); ctx.stroke();
+            ctx.strokeStyle = '#dfd9cf'; ctx.lineWidth = 1;
+            ctx.beginPath(); ctx.moveTo(-5, -34); ctx.lineTo(5, -34); ctx.stroke();
           } else if (id === 'aujla') {
             ctx.strokeStyle = '#ffd54f'; ctx.lineWidth = 2.4;
             ctx.beginPath(); ctx.arc(0, -32, 8, 0.2, Math.PI - 0.2); ctx.stroke();
